@@ -6,7 +6,8 @@ Training and evaluating NBM and SPAM for interpretable machine learning.
 
 To setup the library run:
 ```
-cd ~/nbm_spam/
+git clone git@github.com:facebookresearch/nbm-spam.git
+cd nbm-spam/
 conda create --name nbm_spam python=3.9
 conda activate nbm_spam
 pip install -r requirements.txt
@@ -15,7 +16,7 @@ pip install -e .
 
 Test whether the setup was succesful:
 ```
-(nbm_spam) ~/nbm_spam$ python
+(nbm_spam) ~/nbm-spam$ python
 Python 3.9.12 (main, Apr  5 2022, 06:56:58)
 [GCC 7.5.0] :: Anaconda, Inc. on linux
 Type "help", "copyright", "credits" or "license" for more information.
