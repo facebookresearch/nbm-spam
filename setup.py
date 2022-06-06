@@ -12,7 +12,7 @@ with open("README.md", encoding="utf8") as f:
 
 DISTNAME = "nbm_spam"
 VERSION = "0.1"
-DESCRIPTION = "NeurIPS 2022 Supplementary Code"
+DESCRIPTION = "Training and evaluating NBM and SPAM"
 LONG_DESCRIPTION = readme
 AUTHOR = "Anonymous"
 
