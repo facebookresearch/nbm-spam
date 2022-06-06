@@ -25,6 +25,7 @@ class ConceptSPAM(nn.Module):
         Abhimanyu Dubey, Filip Radenovic, Dhruv Mahajan.
         https://arxiv.org/pdf/2205.14108.pdf
     """
+
     def __init__(
         self,
         num_concepts: int,
