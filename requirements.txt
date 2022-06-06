@@ -1,0 +1,11 @@
+fvcore==0.1.5.post20220305
+hydra-core==1.1.2
+numpy
+pytorch-lightning==1.5.10
+scikit-learn>=1.0.2
+torch
+torchvision
+tqdm>4.29.0
+future
+omegaconf>=2.1
+scipy>1.5.1
