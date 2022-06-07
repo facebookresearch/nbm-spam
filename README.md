@@ -53,16 +53,6 @@ Run NBM with sparse optimization training on Newsgroups:
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/newsgroups/nbm/  ++datamodule.max_epochs=500  ++datamodule.batch_size=512  ++tabular_prediction_module.model=nbm_sparse  ++tabular_prediction_module='{learning_rate:0.0003133,weight_decay:1.593e-08,model_params:{nary:null,num_bases:100,hidden_dims:[256,128,128],dropout:0.1,bases_dropout:0.3,batchnorm:True,output_penalty:4.578,nary_ignore_input:0.0}}'
 ```
 
-Reference:
-```
-@article{radenovic2022neural,
-  title={Neural Basis Models for Interpretability},
-  author={Radenovic, Filip and Dubey, Abhimanyu and Mahajan, Dhruv},
-  journal={arXiv:2205.14120},
-  year={2022}
-}
-```
-
 ### Scalable Polynomial Additive Models (SPAM)
 
 > **Note**: Optimal hyper-parameters were tuned on a server with 8 GPUs. If you want to run on, e.g. single GPU, change `gpus:8` to `gpus:1` in `nbm_spam/config/mode/local.yaml`. Note also that using less GPUs makes the global batch size smaller, and it might require adjusting the learning rate to reach the same performance as reported in the paper.
@@ -98,7 +88,19 @@ Run SPAM order 3 training on Newsgroups:
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.1,weight_decay:2.725e-13,model_params:{ranks:[400,200],dropout:0.5}}'
 ```
 
-Reference:
+### References
+
+NBM:
+```
+@article{radenovic2022neural,
+  title={Neural Basis Models for Interpretability},
+  author={Radenovic, Filip and Dubey, Abhimanyu and Mahajan, Dhruv},
+  journal={arXiv:2205.14120},
+  year={2022}
+}
+```
+
+SPAM:
 ```
 @article{dubey2022scalable,
   title={Scalable Interpretability via Polynomials},
