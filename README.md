@@ -1,4 +1,5 @@
-# Neural Basis Model (NBM) and Scalable Polynomial Additive Models (SPAM)
+## **Neural Basis Model (NBM) and Scalable Polynomial Additive Models (SPAM)**
+#
 
 Training and evaluating NBM and SPAM for interpretable machine learning.
 
