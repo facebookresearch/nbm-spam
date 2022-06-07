@@ -9,3 +9,4 @@ tqdm>4.29.0
 future
 omegaconf>=2.1
 scipy>1.5.1
+protobuf==3.19.4

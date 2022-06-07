@@ -7,23 +7,22 @@
 import setuptools
 
 
+__version__ = '0.1'
+
 with open("README.md", encoding="utf8") as f:
     readme = f.read()
 
-DISTNAME = "nbm_spam"
-VERSION = "0.1"
-DESCRIPTION = "Training and evaluating NBM and SPAM"
-LONG_DESCRIPTION = readme
-AUTHOR = "Anonymous"
-
 if __name__ == "__main__":
     setuptools.setup(
-        name=DISTNAME,
+        name="nbm_spam",
+        version=__version__,
+        author="Meta Platforms, Inc.",
+        author_email="filipradenovic@fb.com",
+        description="Training and evaluating NBM and SPAM",
+        long_description=readme,
+        url="https://github.com/facebookresearch/nbm-spam",
+        license="CC BY-NC 4.0",
         packages=setuptools.find_packages(),
-        version=VERSION,
-        description=DESCRIPTION,
-        long_description=LONG_DESCRIPTION,
-        author=AUTHOR,
         setup_requires=["pytest-runner"],
         test_requires=["pytest"],
     )
