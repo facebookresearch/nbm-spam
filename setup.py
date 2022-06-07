@@ -7,7 +7,7 @@
 import setuptools
 
 
-__version__ = '0.1'
+__version__ = "0.1"
 
 with open("README.md", encoding="utf8") as f:
     readme = f.read()
