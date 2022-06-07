@@ -1,9 +1,8 @@
 ## **Neural Basis Model (NBM) and Scalable Polynomial Additive Models (SPAM)**
-#
 
 Training and evaluating NBM and SPAM for interpretable machine learning.
 
-## Library Setup
+### Library Setup
 
 To setup the library run:
 ```
@@ -25,7 +24,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-## Neural Basis Model (NBM)
+### Neural Basis Model (NBM)
 
 > **Note**: Optimal hyper-parameters were tuned on a server with 8 GPUs. If you want to run on, e.g. single GPU, change `gpus:8` to `gpus:1` in `nbm_spam/config/mode/local.yaml`. Note also that using less GPUs makes the global batch size smaller, and it might require adjusting the learning rate to reach the same performance as reported in the paper.
 
@@ -64,7 +63,7 @@ Reference:
 }
 ```
 
-## Scalable Polynomial Additive Models (SPAM)
+### Scalable Polynomial Additive Models (SPAM)
 
 > **Note**: Optimal hyper-parameters were tuned on a server with 8 GPUs. If you want to run on, e.g. single GPU, change `gpus:8` to `gpus:1` in `nbm_spam/config/mode/local.yaml`. Note also that using less GPUs makes the global batch size smaller, and it might require adjusting the learning rate to reach the same performance as reported in the paper.
 
@@ -109,7 +108,7 @@ Reference:
 }
 ```
 
-## License
+### License
 Copyright (c) Meta Platforms, Inc. and affiliates.
 All rights reserved.
 
