@@ -1,0 +1,20 @@
+datamodule:
+  dataset:
+    dataset_name: CaliforniaHousing
+    scale_range: [0, 1]
+  batch_size: 1024
+  max_epochs: 1000
+  timeout_min: 1440
+
+
+tabular_prediction_module:
+  _target_: train_tabular.TabularPredictionModule
+  num_concepts: 8
+  num_classes: 1
+  learning_rate: 0.1
+  weight_decay: 1e-5
+  criterion: MSELoss
+  optimizer: AdamW
+  momentum: 0.9
+  model: linear
+  model_params: null
