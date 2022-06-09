@@ -60,32 +60,32 @@ python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgro
 
 Run SPAM order 2 training on CA Housing:
 ```
-python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.14941,weight_decay:5.725e-11,model_params:{ranks:[50],dropout:0.17}}'
+python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.05661,weight_decay:1.365e-8,model_params:{ranks:[400],dropout:0.216}}'
 ```
 
 Run SPAM order 3 training on CA Housing:
 ```
-python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.2,weight_decay:0.00001936,model_params:{ranks:[400,200],dropout:0.25}}'
+python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.05377,weight_decay:0.00001888,model_params:{ranks:[800,200],dropout:0.4319}}'
 ```
 
 Run SPAM order 2 training on Covtype:
 ```
-python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.12,weight_decay:5.725e-7,model_params:{ranks:[600],dropout:0.02}}'
+python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/covtype/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.007006,weight_decay:3.448e-7,model_params:{ranks:[600],dropout:0.1246}}'
 ```
 
 Run SPAM order 3 training on Covtype:
 ```
-python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.08,weight_decay:9.9e-11,model_params:{ranks:[400,1200],dropout:0.0}}'
+python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/covtype/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.008929,weight_decay:9.783e-11,model_params:{ranks:[400,800],dropout:0}}'
 ```
 
 Run SPAM order 2 training on Newsgroups:
 ```
-python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.08,weight_decay:2.725e-13,model_params:{ranks:[200],dropout:0.25}}'
+python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/newsgroups/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.05161,weight_decay:7.178e-12,model_params:{ranks:[200],dropout:0.486}}'
 ```
 
 Run SPAM order 3 training on Newsgroups:
 ```
-python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.1,weight_decay:2.725e-13,model_params:{ranks:[400,200],dropout:0.5}}'
+python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/newsgroups/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.00007742,weight_decay:5.006e-11,model_params:{ranks:[400,100],dropout:0.4905}}'
 ```
 
 ### References
