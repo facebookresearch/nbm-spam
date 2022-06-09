@@ -1,4 +1,4 @@
-## **Neural Basis Model (NBM) and Scalable Polynomial Additive Models (SPAM)**
+## **Neural Basis Model (NBM) and Scalable Polynomial Additive Model (SPAM)**
 
 Training and evaluating NBM and SPAM for interpretable machine learning.
 
@@ -53,7 +53,7 @@ Run NBM with sparse optimization training on Newsgroups:
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/newsgroups/nbm/  ++datamodule.max_epochs=500  ++datamodule.batch_size=512  ++tabular_prediction_module.model=nbm_sparse  ++tabular_prediction_module='{learning_rate:0.0003133,weight_decay:1.593e-08,model_params:{nary:null,num_bases:100,hidden_dims:[256,128,128],dropout:0.1,bases_dropout:0.3,batchnorm:True,output_penalty:4.578,nary_ignore_input:0.0}}'
 ```
 
-### Scalable Polynomial Additive Models (SPAM)
+### Scalable Polynomial Additive Model (SPAM)
 
 > **Note**: Optimal hyper-parameters were tuned on a server with 8 GPUs. If you want to run on, e.g. single GPU, change `gpus:8` to `gpus:1` in `nbm_spam/config/mode/local.yaml`. Note also that using less GPUs makes the global batch size smaller, and it might require adjusting the learning rate to reach the same performance as reported in the paper.
 
@@ -90,7 +90,7 @@ python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgro
 
 ### References
 
-NBM:
+Neural Basis Model (NBM) [[pdf](https://arxiv.org/pdf/2205.14120.pdf)]:
 ```
 @article{radenovic2022neural,
   title={Neural Basis Models for Interpretability},
@@ -100,7 +100,7 @@ NBM:
 }
 ```
 
-SPAM:
+Scalable Polynomial Additive Model (SPAM) [[pdf](https://arxiv.org/pdf/2205.14108.pdf)]:
 ```
 @article{dubey2022scalable,
   title={Scalable Interpretability via Polynomials},
