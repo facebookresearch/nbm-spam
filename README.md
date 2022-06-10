@@ -33,17 +33,17 @@ Run NBM training on CA Housing:
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/nbm/  ++datamodule.max_epochs=1000  ++datamodule.batch_size=1024  ++tabular_prediction_module.model=nbm  ++tabular_prediction_module='{learning_rate:0.001956,weight_decay:1.568e-05,model_params:{nary:null,num_bases:100,hidden_dims:[256,128,128],num_subnets:1,dropout:0.0,bases_dropout:0.05,batchnorm:True,output_penalty:0.0001439}}'
 ```
 
-Run NB<sup>2</sup>M training on CA Housing:
+Run NBM order 2 training on CA Housing:
 ```
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/nb2m/  ++datamodule.max_epochs=1000  ++datamodule.batch_size=1024  ++tabular_prediction_module.model=nbm  ++tabular_prediction_module='{learning_rate:0.001902,weight_decay:7.483e-09,model_params:{nary:[1,2],num_bases:200,hidden_dims:[256,128,128],num_subnets:1,dropout:0.0,bases_dropout:0.05,batchnorm:True,output_penalty:1.778e-06}}'
 ```
 
-Run NBM on CoverType:
+Run NBM training on CoverType:
 ```
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/covtype/nbm/  ++datamodule.max_epochs=500  ++datamodule.batch_size=1024  ++tabular_prediction_module.model=nbm  ++tabular_prediction_module='{learning_rate:0.0199,weight_decay:5.931e-07,model_params:{nary:null,num_bases:100,hidden_dims:[256,128,128],num_subnets:1,dropout:0.0,bases_dropout:0.0,batchnorm:True,output_penalty:0.05533}}'
 ```
 
-Run NB<sup>2</sup>M training on CoverType:
+Run NBM order 2 training on CoverType:
 ```
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/covtype/nb2m/  ++datamodule.max_epochs=500  ++datamodule.batch_size=512  ++tabular_prediction_module.model=nbm  ++tabular_prediction_module='{learning_rate:0.002681,weight_decay:1.66e-07,model_params:{nary:[1,2],num_bases:200,hidden_dims:[256,128,128],num_subnets:1,dropout:0.0,bases_dropout:0.00,batchnorm:True,output_penalty:0.001545}}'
 ```
@@ -86,6 +86,14 @@ python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgro
 Run SPAM order 3 training on Newsgroups:
 ```
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgroups.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/newsgroups/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.00007742,weight_decay:5.006e-11,model_params:{ranks:[400,100],dropout:0.4905}}'
+```
+
+### Neural Basis Model with Scalable Polynomial Additive Model (NBM-SPAM)
+> **Note**: This is just an example run command, NOT optimal hyper-parameters. It will be updated soon.
+
+Run NBM-SPAM order 2 training on CA Housing:
+```
+python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/nbm/  ++datamodule.max_epochs=1000  ++datamodule.batch_size=1024  ++tabular_prediction_module.model=nbm  ++tabular_prediction_module='{learning_rate:0.001956,weight_decay:1.568e-05,model_params:{nary:null,num_bases:100,hidden_dims:[256,128,128],num_subnets:1,dropout:0.0,bases_dropout:0.05,batchnorm:True,output_penalty:0.0001439,polynomial:{ranks:[400],dropout:0.216}}}'
 ```
 
 ### References

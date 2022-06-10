@@ -1,9 +1,3 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
-
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
-
 import math
 from collections import OrderedDict
 from itertools import combinations
@@ -14,6 +8,7 @@ from omegaconf.listconfig import ListConfig
 from torch.nn.modules.activation import ReLU
 
 from .build import MODELS_REGISTRY
+from .concept_spam import ConceptSPAM
 
 
 class ConceptNNBasesNary(nn.Module):
@@ -72,9 +67,7 @@ class ConceptNBMNary(nn.Module):
     as f(xi, xj) for order 2 or f(xi, xj, xk) for arbitrary order d.
 
     ref:
-        Neural Basis Models for Interpretability.
-        Filip Radenovic, Abhimanyu Dubey, Dhruv Mahajan.
-        https://arxiv.org/pdf/2205.14120.pdf
+        Neural Bases Model.
     """
 
     def __init__(
@@ -89,6 +82,7 @@ class ConceptNBMNary(nn.Module):
         bases_dropout=0.0,
         batchnorm=True,
         output_penalty=0.0,
+        polynomial=None,
     ):
         """Initializing NBM hyperparameters.
 
@@ -110,12 +104,18 @@ class ConceptNBMNary(nn.Module):
             dropout (0.0): Coefficient for dropout within neural MLP bases.
             bases_dropout (0.0): Coefficient for dropping out entire basis.
             batchnorm (True): Whether to use batchnorm or not.
+            polynomial (None): Supply SPAM initialization here to train NBM-SPAM.
+                Note: if polynomial is not None, nary has to be of order 1.
         """
         super(ConceptNBMNary, self).__init__()
+
         self._num_concepts = num_concepts
         self._num_classes = num_classes
         self._num_bases = num_bases
         self._num_subnets = num_subnets
+        if polynomial:
+            self._num_subnets_per_polynomial = num_subnets
+            self._num_subnets = (len(polynomial["ranks"]) + 1) * num_subnets
         self._batchnorm = batchnorm
         self._output_penalty = output_penalty
 
@@ -158,11 +158,50 @@ class ConceptNBMNary(nn.Module):
             groups=num_out_features,
         )
 
-        self.classifier = nn.Linear(
-            in_features=num_out_features,
-            out_features=self._num_classes,
-            bias=True,
-        )
+        if polynomial:
+            if list(self._nary_indices.keys()) != ["1"]:
+                raise ValueError(
+                    "'nary': if polynomial is not None, nary has to be of order '1'"
+                )
+            self._use_spam = True
+            _poly_ranks = polynomial["ranks"]
+            _other_keys = {k: v for k, v in polynomial.items() if k != "ranks"}
+            self._spam = nn.ModuleList()
+            self._spam_num_out_features = (
+                sum(
+                    len(self._nary_indices[order])
+                    for order in self._nary_indices.keys()
+                )
+                * self._num_subnets_per_polynomial
+            )
+            # first order model in spam is linear
+            self._spam.append(
+                nn.Linear(
+                    in_features=self._spam_num_out_features,
+                    out_features=self._num_classes,
+                    bias=True,
+                )
+            )
+            # second and higher are polynomials
+            for _id, _rank in enumerate(_poly_ranks):
+                _temp_rank = [0] * _id + [_rank]
+                self._spam.append(
+                    ConceptSPAM(
+                        num_concepts=self._spam_num_out_features,
+                        num_classes=self._num_classes,
+                        ignore_unary=True,
+                        use_geometric_mean=False,
+                        ranks=_temp_rank,
+                        **_other_keys,
+                    )
+                )
+        else:
+            self._use_spam = False
+            self.classifier = nn.Linear(
+                in_features=num_out_features,
+                out_features=self._num_classes,
+                bias=True,
+            )
 
     def get_key(self, order, subnet):
         return f"ord{order}_net{subnet}"
@@ -187,7 +226,15 @@ class ConceptNBMNary(nn.Module):
             -1
         )
 
-        out = self.classifier(out_feats)
+        if self._use_spam:
+            out = []
+            for _poly_idx in range(len(self._spam)):
+                _start_idx = _poly_idx * self._spam_num_out_features
+                _end_idx = (_poly_idx + 1) * self._spam_num_out_features
+                out.append(self._spam[_poly_idx](out_feats[:, _start_idx:_end_idx]))
+            out = torch.sum(torch.stack(out, dim=-1), dim=-1)
+        else:
+            out = self.classifier(out_feats)
 
         if self.training:
             return out, out_feats
@@ -208,9 +255,7 @@ class ConceptNBMNarySparse(nn.Module):
     to sparsify input. Thus, we can support more n-ary terms, eg 100k or more.
 
     ref:
-        Neural Basis Models for Interpretability.
-        Filip Radenovic, Abhimanyu Dubey, Dhruv Mahajan.
-        https://arxiv.org/pdf/2205.14120.pdf
+        Neural Bases Model.
     """
 
     def __init__(
