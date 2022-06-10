@@ -68,12 +68,12 @@ Run SPAM order 3 training on CA Housing:
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=california_housing.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/ca_housing/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.05377,weight_decay:0.00001888,model_params:{ranks:[800,200],dropout:0.4319}}'
 ```
 
-Run SPAM order 2 training on Covtype:
+Run SPAM order 2 training on CoverType:
 ```
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/covtype/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.007006,weight_decay:3.448e-7,model_params:{ranks:[600],dropout:0.1246}}'
 ```
 
-Run SPAM order 3 training on Covtype:
+Run SPAM order 3 training on CoverType:
 ```
 python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=covtype.yaml  +mode=local  hydra.sweep.dir=$HOME/local_runs/covtype/spam  ++datamodule.batch_size=1024  ++datamodule.max_epochs=1000  ++tabular_prediction_module.model=spam  ++tabular_prediction_module='{learning_rate:0.008929,weight_decay:9.783e-11,model_params:{ranks:[400,800],dropout:0}}'
 ```
