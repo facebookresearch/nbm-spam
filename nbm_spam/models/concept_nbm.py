@@ -73,7 +73,9 @@ class ConceptNBMNary(nn.Module):
     as f(xi, xj) for order 2 or f(xi, xj, xk) for arbitrary order d.
 
     ref:
-        Neural Bases Model.
+        Neural Basis Models for Interpretability.
+        Filip Radenovic, Abhimanyu Dubey, Dhruv Mahajan.
+        https://arxiv.org/pdf/2205.14120.pdf
     """
 
     def __init__(
@@ -261,7 +263,9 @@ class ConceptNBMNarySparse(nn.Module):
     to sparsify input. Thus, we can support more n-ary terms, eg 100k or more.
 
     ref:
-        Neural Bases Model.
+        Neural Basis Models for Interpretability.
+        Filip Radenovic, Abhimanyu Dubey, Dhruv Mahajan.
+        https://arxiv.org/pdf/2205.14120.pdf
     """
 
     def __init__(
