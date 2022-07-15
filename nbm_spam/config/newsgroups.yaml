@@ -1,0 +1,20 @@
+datamodule:
+  dataset:
+    dataset_name: Newsgroups
+    scale_range: null
+  batch_size: 1024
+  max_epochs: 500
+  timeout_min: 1440
+
+
+tabular_prediction_module:
+  _target_: train_tabular.TabularPredictionModule
+  num_concepts: 146016
+  num_classes: 20
+  learning_rate: 0.1
+  weight_decay: 1e-5
+  criterion: CrossEntropyLoss
+  optimizer: AdamW
+  momentum: 0.9
+  model: linear
+  model_params: null
