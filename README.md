@@ -99,7 +99,7 @@ python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=califor
 ### References
 
 Neural Basis Model (NBM) [[pdf](https://arxiv.org/pdf/2205.14120.pdf)]:
-```
+```bibtex
 @article{radenovic2022neural,
   title={Neural Basis Models for Interpretability},
   author={Radenovic, Filip and Dubey, Abhimanyu and Mahajan, Dhruv},
@@ -109,7 +109,7 @@ Neural Basis Model (NBM) [[pdf](https://arxiv.org/pdf/2205.14120.pdf)]:
 ```
 
 Scalable Polynomial Additive Model (SPAM) [[pdf](https://arxiv.org/pdf/2205.14108.pdf)]:
-```
+```bibtex
 @article{dubey2022scalable,
   title={Scalable Interpretability via Polynomials},
   author={Dubey, Abhimanyu and Radenovic, Filip and Mahajan, Dhruv},
