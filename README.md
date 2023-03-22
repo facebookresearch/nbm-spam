@@ -89,7 +89,7 @@ python nbm_spam/train_tabular.py -m  --config-path=config  --config-name=newsgro
 ```
 
 ### Neural Basis Model with Scalable Polynomial Additive Model (NBM-SPAM)
-> **Note**: This is just an example run command, NOT optimal hyper-parameters. It will be updated soon.
+> **Note**: This is just an example run command, NOT optimal hyper-parameters.
 
 Run NBM-SPAM order 2 training on CA Housing:
 ```
